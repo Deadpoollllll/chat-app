@@ -1,0 +1,5 @@
+commands
+openssl rand -base64 32
+
+const salt = await bcryptjs.genSalt(10);
+const hashedPassword = await bcryptjs.hash(password, salt);
