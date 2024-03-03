@@ -25,13 +25,17 @@ export const signup = async (req, res) => {
         const girlProfilePic = `https://avatar.iran.liara.run/public/girl?username=${username}`
         const othersProfilePic = `https://avatar.iran.liara.run/public?username=${username}`
 
+        const pokeID = Math.ceil(Math.random() * 100);
+        const avatar = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokeID}.png`
+
         const newUser = new User({
             fullName,
             username,
             password: hashedPassword,
             gender,
-            profilePic: gender === "male" ? boyProfilePic :
-                (gender === "female" ? girlProfilePic : othersProfilePic)
+            profilePic: avatar
+            // gender === "male" ? boyProfilePic :
+            //     (gender === "female" ? girlProfilePic : othersProfilePic)
         })
 
         if (newUser) {
@@ -56,7 +60,9 @@ export const signup = async (req, res) => {
 export const login = async (req, res) => {
     try {
         const { username, password } = req.body;
+
         const user = await User.findOne({ username });
+
         const isPasswordCorrect = await bcryptjs.compare(password, user.password || "");
 
         if (!user || !isPasswordCorrect)

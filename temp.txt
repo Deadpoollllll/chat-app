@@ -3,3 +3,6 @@ openssl rand -base64 32
 
 const salt = await bcryptjs.genSalt(10);
 const hashedPassword = await bcryptjs.hash(password, salt);
+
+const pokeID = Math.ceil(Math.random() * 100);
+const avatar = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokeID}.png`

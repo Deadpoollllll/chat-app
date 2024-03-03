@@ -1,6 +1,6 @@
 import { useAuthContext } from "../../context/AuthContext";
 import { extractTime } from "../../utils/extractTime";
-import useConversation from "../../zustand/useConversation";
+import useConversation from "../../store/useConversation";
 
 const Message = ({ message }) => {
 	const { authUser } = useAuthContext();
